@@ -1,0 +1,20 @@
+{
+  "posts": [
+    {
+      "id": 3,
+      "title": "google",
+      "url": "google.com",
+      "category": "categorya"
+    },
+    {
+      "id": 5,
+      "title": "radwanromy",
+      "url": "radwanromy.com",
+      "category": "categoryb"
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}

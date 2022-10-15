@@ -1,1 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
+.container{
+    background-color: #955151;
+   position: center;
+   align-content: center;
+}
+
+.input-with-icon {
+    /* causes absolute icon div to be positioned correctly */
+    position: relative;
+  
+    width: 25rem;
+    height: 3.2rem;
+    box-sizing: border-box;
+  }
+  
+  .input-with-icon .form-control {
+      height: 100%;
+      width: 100%;
+      padding-right: 3.65rem;
+      box-sizing: border-box;
+  }
+  
+  .input-with-icon .icon {
+    position: absolute;
+  
+    /* These are set relative to the height of the input box to bound the box neatly inside. This is aesthetic to me but you may change the dimensions of course. */
+    right: 0.3rem;
+    top: 0.3rem;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 0.3rem;
+  
+    /* content in the icon div is centered, without bootstrap or font-awesome you may wish to add your own text in the span */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+  }

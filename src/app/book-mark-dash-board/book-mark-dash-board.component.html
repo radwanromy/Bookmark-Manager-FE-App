@@ -1,0 +1,136 @@
+<nav class="navbar navbar-light bg-white">
+    <div class="container-fluid" style="padding-left: 220px;padding-right: 220px;">
+        <h1>Bookmark Manager</h1>
+        <div class="d-flex">
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" (click)="this.updateop=false" data-bs-target="#exampleModal">Add
+                Bookmark</button>
+        </div>
+    </div>
+</nav>
+<table class="table mt-3"   >
+<tr *ngFor="let row of bookMarkData">
+<td style="width: 50%;" >
+
+<h4 align="center">{{row.category}}</h4>
+    <table class="tablea mt-3" align="center" style="width: 500px;" border="2px" >
+        <tbody>
+
+            <tr  >
+                <td hidden >{{row.id}}</td>
+                <td style="width: 200px;">{{row.title}}</td>
+                <td align="right">
+                    <button type="button"  (click)="this.showform=true;" (click)="getOnForm(row)" (keydown.enter)="onKeyPress($event)" class="btn btn-primary" >Details</button>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+
+</td>
+<td>
+    <table class="tableb mt-3" align="center"  border="2px" style="width: 700px;" *ngIf = "showform"  name="showdetails"> 
+        <!-- *ngIf = "showform" -->
+
+        <tbody>
+            <tr *ngFor="let row of bookMarkData">
+                <td hidden>{{row.id}}</td>
+                <td>{{row.title}}</td>
+                <td>{{row.url}}</td>
+                <td>{{row.category}}</td>
+                <td >
+                    <button (click)="onEdit(row)" type="button" (click)="this.updateop=true" (click)="this.addcategory=false" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
+                    <button  (click)="deleteBookMarkDetails(row)" class="btn btn-danger">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</td>
+</tr>
+<tr>
+    <td>
+        <table class="tablec mt-3" align="center" border="2px" style="padding:20px ;"  name="showdetails"> 
+            <!-- *ngIf = "showform" -->
+   
+            <thead>
+                <tr>
+                    <th scope="col">BMSL</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">URL</th>
+                    <th scope="col">Category</th>
+                    <!-- <th scope="col">Actions</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td><input type="text" class="form-control"  formControlName="id" [(ngModel)]="this.formValue.controls"> </td>
+                    <td><input type="text" class="form-control"  formControlName="title"> </td>
+                    <td><input type="text" class="form-control"  formControlName="url"> </td>
+                    <td><input type="text" class="form-control"  formControlName="category"> </td>
+        
+                </tr>
+            </tbody>
+
+        </table>
+    </td>
+</tr>
+</table>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Bookmark</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formValue">
+                    <div class="mb-3">
+                        <!-- <label for="exampleInputEmail1" class="form-label">Title</label> -->
+                        <input type="text" class="form-control" formControlName="title" placeholder="Title"
+                            id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                        <div id="emailHelp" class="form-text">Max 30 characters, required</div>
+                    </div>
+                    <div class="mb-3">
+                        <!-- <label for="exampleInputEmail1" class="form-label">URL</label> -->
+                        <input type="url" class="form-control" formControlName="url" placeholder="URL"
+                            id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                        <div id="emailHelp" class="form-text">Valid URL format, required</div>
+                    </div>
+                  
+                    <div class="mb-3" *ngIf="addcategory" >
+                        <input type="url" class="form-control" formControlName="category" placeholder="Category"
+                            id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                        <div id="emailHelp" class="form-text">Add New Category</div>
+                    </div>
+
+                    
+                  
+
+                    <div class="omrs-input-group" style="display: inline;">
+                        <label class="omrs-input-underlined" >
+                            <select style="display: inline;" *ngIf="catop"  class="form-control" formControlName="category" data-toggle="tooltip" aria-placeholder="Select Option Below"   data-placement="right" required>  
+                                <option value="" disabled selected>Select Category</option>  <option value="categorya"  selected >Category A</option>  
+                             <option value="categoryb"> Category B</option>  
+                             <option value="categoryc"> Category C</option>  
+                            
+                           </select>  
+                          
+                        </label>
+                        <button style="display: inline;" *ngIf="catop"  (click)="this.addcategory=true" (click)="this.catop=false"><img src="../../assets/172525_plus_icon.png"  width="20px" height="20px" ></button>
+                        <div id="emailHelp"  *ngIf="catop" class="form-text">Displays already existing categories, required</div>
+                    </div>
+                  
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal" (click)="this.addcategory=false" (click)="this.catop=true">Cancel</button>
+                <button type="button"  *ngIf="saveop" (click)="postBookMarkDetails()" class="btn btn-primary">Save</button>
+                <button type="button" *ngIf="updateop" (click)="updateBookMarkDetails()" class="btn btn-primary">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
