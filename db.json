@@ -1,16 +1,10 @@
 {
   "posts": [
     {
-      "id": 3,
-      "title": "google",
-      "url": "google.com",
-      "category": "categorya"
-    },
-    {
-      "id": 5,
-      "title": "radwanromy",
-      "url": "radwanromy.com",
-      "category": "categoryb"
+      "id": 6,
+      "title": "Javascript Tutorial",
+      "url": "www.xyz.com",
+      "category": "Category A"
     }
   ],
   "comments": [],

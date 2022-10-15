@@ -2,7 +2,7 @@
     <div class="container-fluid" style="padding-left: 220px;padding-right: 220px;">
         <h1>Bookmark Manager</h1>
         <div class="d-flex">
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" (click)="this.updateop=false" data-bs-target="#exampleModal">Add
+            <button type="button" class="btn btn-success" (click)=" this.formValue.reset();"  data-bs-toggle="modal" (click)="this.updateop=false" data-bs-target="#exampleModal">Add
                 Bookmark</button>
         </div>
     </div>
@@ -34,12 +34,13 @@
         <tbody>
             <tr *ngFor="let row of bookMarkData">
                 <td hidden>{{row.id}}</td>
-                <td>{{row.title}}</td>
-                <td>{{row.url}}</td>
-                <td>{{row.category}}</td>
+             Title: {{row.title}}
+                <br>
+               URL: {{row.url}}<br>
+             Category:  {{row.category}}
                 <td >
                     <button (click)="onEdit(row)" type="button" (click)="this.updateop=true" (click)="this.addcategory=false" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
-                    <button  (click)="deleteBookMarkDetails(row)" class="btn btn-danger">Delete</button>
+                    <br><button  (click)="deleteBookMarkDetails(row)" class="btn btn-danger">Delete</button>
                 </td>
             </tr>
         </tbody>
@@ -48,7 +49,7 @@
 </tr>
 <tr>
     <td>
-        <table class="tablec mt-3" align="center" border="2px" style="padding:20px ;"  name="showdetails"> 
+        <table class="tablec mt-3" align="center" border="2px" style="padding:20px ;" hidden  name="showdetails"> 
             <!-- *ngIf = "showform" -->
    
             <thead>
@@ -63,10 +64,10 @@
             <tbody>
                 <tr>
                     <td></td>
-                    <td><input type="text" class="form-control"  formControlName="id" [(ngModel)]="this.formValue.controls"> </td>
-                    <td><input type="text" class="form-control"  formControlName="title"> </td>
-                    <td><input type="text" class="form-control"  formControlName="url"> </td>
-                    <td><input type="text" class="form-control"  formControlName="category"> </td>
+                    <!-- <td><input type="text" class="form-control"  formControlName="id" [(ngModel)]="this.formValue.controls.id"> </td> -->
+                    <td><input type="text" class="form-control" formValue.controls="title"> </td>
+                    <td><input type="text" class="form-control" formValue.controls="url"> </td>
+                    <td><input type="text" class="form-control" formValue.controls="category"> </td>
         
                 </tr>
             </tbody>
@@ -111,9 +112,10 @@
                     <div class="omrs-input-group" style="display: inline;">
                         <label class="omrs-input-underlined" >
                             <select style="display: inline;" *ngIf="catop"  class="form-control" formControlName="category" data-toggle="tooltip" aria-placeholder="Select Option Below"   data-placement="right" required>  
-                                <option value="" disabled selected>Select Category</option>  <option value="categorya"  selected >Category A</option>  
-                             <option value="categoryb"> Category B</option>  
-                             <option value="categoryc"> Category C</option>  
+                                <option value="" disabled selected aria-placeholder="Select Category">Select Category</option>  
+                                <option value="Category A"  selected >Category A</option>  
+                             <option value="Category B"> Category B</option>  
+                             <option value="Category C"> Category C</option>  
                             
                            </select>  
                           
@@ -128,7 +130,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal" (click)="this.addcategory=false" (click)="this.catop=true">Cancel</button>
-                <button type="button"  *ngIf="saveop" (click)="postBookMarkDetails()" class="btn btn-primary">Save</button>
+                <button type="button" (click)="postBookMarkDetails()" class="btn btn-primary">Save</button>
                 <button type="button" *ngIf="updateop" (click)="updateBookMarkDetails()" class="btn btn-primary">Update</button>
             </div>
         </div>

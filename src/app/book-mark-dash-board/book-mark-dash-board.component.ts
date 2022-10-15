@@ -91,9 +91,9 @@ export class BookMarkDashBoardComponent implements OnInit {
   }
   getOnForm(row: any){
     this.bookmarkModelObj.id = row.id;
-    this.formValue.controls['title'].patchValue(row.title);
-    this.formValue.controls['url'].patchValue(row.url);
-    this.formValue.controls['category'].patchValue(row.category); 
+    this.formValue.controls['title'].setValue(row.title);
+    this.formValue.controls['url'].setValue(row.url);
+    this.formValue.controls['category'].setValue(row.category);
   }
   onKeyPress(event : any){
     this.bookmarkModelObj.id=this.formValue.value.id;
