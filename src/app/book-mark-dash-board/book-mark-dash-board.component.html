@@ -2,7 +2,7 @@
     <div class="container-fluid" style="padding-left: 220px;padding-right: 220px;">
         <h1>Bookmark Manager</h1>
         <div class="d-flex">
-            <button type="button" class="btn btn-success" (click)=" this.formValue.reset();"  data-bs-toggle="modal" (click)="this.updateop=false" data-bs-target="#exampleModal">Add
+            <button type="button" class="btn btn-success"   data-bs-toggle="modal" (click)="this.updateop=false" data-bs-target="#exampleModal">Add
                 Bookmark</button>
         </div>
     </div>
@@ -22,6 +22,7 @@
                     <button type="button"  (click)="this.showform=true;" (click)="getOnForm(row)" (keydown.enter)="onKeyPress($event)" class="btn btn-primary" >Details</button>
                 </td>
             </tr>
+            
         </tbody>
 
     </table>
